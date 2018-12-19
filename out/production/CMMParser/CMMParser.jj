@@ -1,0 +1,228 @@
+options
+{
+  static = true;
+  LOOKAHEAD=3;
+}
+ 
+PARSER_BEGIN(CMMParser)
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+public class CMMParser
+{
+  public static void main(String args[]) throws ParseException {
+        try {
+            InputStream inputstream = new FileInputStream("test.c");
+            CMMParser parser = new CMMParser(inputstream);
+            parser.procedure();
+        }catch (Exception e){
+            System.err.println(e);
+        }
+    }
+}
+
+PARSER_END(CMMParser)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| < "//" (~[ "\n", "\r" ])*
+    (
+      "\n"
+    | "\r"
+    | "\r\n"
+    ) >
+| < "/*" (~[ "*" ])* "*"
+    (
+      ~[ "/" ] (~[ "*" ])* "*"
+    )*
+    "/" >
+}
+
+TOKEN : /* LITERALS */
+{
+    < CONSTANT :<INTEGER_LITERAL> | <REAL_LITERAL>>
+    //数字
+    |<#DIGIT:["0"-"9"]>
+    //整数
+    |<INTEGER_LITERAL:["1"-"9"](<DIGIT>)*>
+    //实数
+    |<REAL_LITERAL:(<DIGIT>)+
+    |(<DIGIT>)+"."
+    |(<DIGIT>)+"."(<DIGIT>)+
+    |"."(<DIGIT>)+>
+    //字符串
+    |< STRING : "\"" ((~[ "\"" , "\n", "\\"] )* | (("\\" ("\"" | "\n" | "\\" | "'\n\'"))))* "\"">
+}
+
+TOKEN : /* KEYWORDS */
+{
+    <IF :"if">
+    |<ELSE :"else">
+    |<WHILE :"while">
+    |<FOR :"for">
+    |<READ :"read">
+    |<WRITE :"write">
+    |<INT :"int">
+    |<REAL:"real">
+    |<VOID:"void">
+    |<RETURN:"return">
+}
+
+TOKEN : /* OPERATORS */
+{
+     <PLUS:"+">
+    |<MINUS:"-">
+    |<MUL:"*">
+    |<DIV:"/">
+    |<ASSIGN:"=">
+    |<LT:"<">
+    |<GT:">">
+    |<LET:"<=">
+    |<GET:">=">
+    |<EQ:"==">
+    |<NEQ:"<>">
+}
+TOKEN : /* RELATIONSHIPOPERATOR */
+{
+	<LPS:"(">
+        |<RPS:")">
+        |<COMMA:",">
+        |<SEMI:";">
+        |<LBRACE:"{">
+        |<RBRACE:"}">
+        |<LBRACKET:"[">
+        |<RBRACKET:"]">
+        |<SINQS:"'">
+        |<DOUQS:"\"">
+        |<ADDR:"&">
+}
+
+TOKEN : /* IDENTIFIERS */
+{
+  <IDENTIFIERS:["a"-"z","A"-"Z","_"](["a"-"z","A"-"Z","_","0"-"9"])*>
+}
+
+
+void procedure(): { }
+{
+  (Statement())*
+}
+
+void Statement(): { }
+{
+
+	    SequenceStatement()				//顺序语句
+		| IfStatement()					//条件语句
+		| While()						//循环语句
+		| For()
+		| Read()
+		| Write()
+		| StatementBlock()
+		| DeclareFunction()
+		| FunctionCall()
+		| AssignStatement()
+		| Return()
+
+}
+void type():{ }
+{
+    <INT>|<REAL>|<VOID>
+}
+//顺序
+void SequenceStatement(): { }
+{
+	(Declare()|AssignStatement()) ";"			//声明和赋值
+}
+void Declare() : { }
+{
+ (type()< IDENTIFIERS>(<ASSIGN>( expression()))? ("," < IDENTIFIERS >(< ASSIGN> ( expression()))?)* )
+}
+void AssignStatement(): { }
+{
+	< IDENTIFIERS>< ASSIGN> expression()
+}
+
+//条件
+void IfStatement():{}
+{
+  	< IF>< LPS>expression()< RPS>Statement()
+  	(
+        < ELSE > Statement()
+      )?
+}
+
+void While():{}
+{
+    <WHILE><LPS>expression()<RPS>Statement()
+}
+
+void For():{}
+{
+    <FOR><LPS>SequenceStatement()expression()";"AssignStatement()<RPS>
+    Statement()
+}
+
+void Read():{}
+{
+    <READ><LPS><IDENTIFIERS><RPS>";"
+}
+
+void Write():{}
+{
+    <WRITE><LPS>expression()<RPS>";"
+}
+
+void DeclareFunction():{}
+{
+   type()<IDENTIFIERS><LPS>(type()<IDENTIFIERS>(","type()<IDENTIFIERS>)*)?<RPS>StatementBlock()
+}
+
+void StatementBlock():{}
+{
+    <LBRACE>(Statement())*<RBRACE>
+}
+
+void expression() :{ }
+{
+	polynomial()(
+	 <EQ>polynomial()
+	 |<NEQ>polynomial()
+	 |<GT>polynomial()
+	 |<GET>polynomial()
+	 |<LT>polynomial()
+	 |<LET>polynomial()
+	)?
+}
+void polynomial(): { }
+{
+	term()((<PLUS>|<MINUS>)polynomial())?
+}
+void term(): { }
+{
+	factor()((<DIV>|<MUL>)term())?
+}
+void factor() :{ }
+{
+
+	 <CONSTANT>
+	| <LPS>expression()<RPS>
+	| <PLUS>term()
+	| <MINUS>term()
+	| <IDENTIFIERS>(<LPS>(expression()(","expression())*)?<RPS>)?
+}
+
+void FunctionCall():{}
+{
+    <IDENTIFIERS><LPS>(expression()(","expression())*)?<RPS>
+}
+
+void Return():{}
+{
+    <RETURN>expression()";"
+}
