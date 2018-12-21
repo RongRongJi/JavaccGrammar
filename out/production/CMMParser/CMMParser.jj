@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class CMMParser
 {
+    static SymbolTable table = new SymbolTable();
+    static int level = 0;
   public static void main(String args[]) throws ParseException {
         try {
             InputStream inputstream = new FileInputStream("test.c");
@@ -109,7 +111,9 @@ TOKEN : /* IDENTIFIERS */
 }
 
 
-void procedure(): { }
+void procedure(): {
+
+ }
 {
   (Statement())*
 }
@@ -139,13 +143,39 @@ void SequenceStatement(): { }
 {
 	(Declare()|AssignStatement()) ";"			//声明和赋值
 }
-void Declare() : { }
+void Declare() : { Token tk; String name;Symbol tmp;}
 {
- (type()< IDENTIFIERS>(<ASSIGN>( expression()))? ("," < IDENTIFIERS >(< ASSIGN> ( expression()))?)* )
+ (type()tk=< IDENTIFIERS>
+ {
+    name = tk.image;
+    tmp = new Symbol(level,name);
+    try{
+    table.registerSymbol(tmp);
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+ }(<ASSIGN>( expression()))? (","
+ tk=< IDENTIFIERS >
+ {
+         name = tk.image;
+         tmp = new Symbol(level,name);
+        try{
+            table.registerSymbol(tmp);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+  }(< ASSIGN> ( expression()))?)* )
 }
-void AssignStatement(): { }
+void AssignStatement(): { Token tk;}
 {
-	< IDENTIFIERS>< ASSIGN> expression()
+	tk=< IDENTIFIERS>
+	{
+	    try{
+             table.getSymbol(tk.image);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+	}< ASSIGN> expression()
 }
 
 //条件
@@ -168,9 +198,17 @@ void For():{}
     Statement()
 }
 
-void Read():{}
+void Read():{
+Token tk;
+}
 {
-    <READ><LPS><IDENTIFIERS><RPS>";"
+    <READ><LPS>tk=<IDENTIFIERS>{
+                try{
+                     table.getSymbol(tk.image);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+    }<RPS>";"
 }
 
 void Write():{}
@@ -178,14 +216,49 @@ void Write():{}
     <WRITE><LPS>expression()<RPS>";"
 }
 
-void DeclareFunction():{}
+void DeclareFunction():{
+    Token tk;FunSymbol tmp;String name;level++;
+    Symbol tmp1;
+}
 {
-   type()<IDENTIFIERS><LPS>(type()<IDENTIFIERS>(","type()<IDENTIFIERS>)*)?<RPS>StatementBlock()
+   type()tk=<IDENTIFIERS>
+   {
+        name = tk.image;
+        tmp = new FunSymbol(name);
+        try{
+             table.registerFunSymbol(tmp);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+   }<LPS>(type()tk=<IDENTIFIERS>
+   {
+       name = tk.image;
+       tmp1 = new Symbol(level,name);
+       try{
+       table.registerSymbol(tmp1);
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+   }(","type()tk=<IDENTIFIERS>
+   {
+       name = tk.image;
+       tmp1 = new Symbol(level,name);
+       try{
+       table.registerSymbol(tmp1);
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+   })*)?<RPS>StatementBlock()
 }
 
-void StatementBlock():{}
+void StatementBlock():{
+ }
 {
-    <LBRACE>(Statement())*<RBRACE>
+    <LBRACE>{level++;}(Statement())*<RBRACE>
+    {
+         table.deregisterSymbol(level);
+         level--;
+    }
 }
 
 void expression() :{ }
@@ -207,19 +280,40 @@ void term(): { }
 {
 	factor()((<DIV>|<MUL>)term())?
 }
-void factor() :{ }
+void factor() :{Token tk;String name;boolean isFun=false; }
 {
 
 	 <CONSTANT>
 	| <LPS>expression()<RPS>
 	| <PLUS>term()
 	| <MINUS>term()
-	| <IDENTIFIERS>(<LPS>(expression()(","expression())*)?<RPS>)?
+	| tk=<IDENTIFIERS>(<LPS>(expression()(","expression())*)?<RPS>{isFun=true;})?
+	{
+	    name = tk.image;
+	    try{
+            if(isFun){
+                table.getFunSymbol(name);
+            }else{
+                table.getSymbol(name);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+	}
 }
 
-void FunctionCall():{}
+void FunctionCall():{Token tk;FunSymbol tmp;String name;}
 {
-    <IDENTIFIERS><LPS>(expression()(","expression())*)?<RPS>
+    tk=<IDENTIFIERS>
+    {
+        name=tk.image;
+        tmp=new FunSymbol(name);
+        try{
+            table.getFunSymbol(name);
+         }catch(Exception e){
+            e.printStackTrace();
+        }
+    }<LPS>(expression()(","expression())*)?<RPS>
 }
 
 void Return():{}
