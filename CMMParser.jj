@@ -48,7 +48,7 @@ SKIP :
 
 TOKEN : /* LITERALS */
 {
-    < CONSTANT :<INTEGER_LITERAL> | <REAL_LITERAL>>
+    < CONSTANT :<INTEGER_LITERAL> | <REAL_LITERAL> | <STRING> >
     //数字
     |<#DIGIT:["0"-"9"]>
     //整数
@@ -134,48 +134,38 @@ void Statement(): { }
 		| Return()
 
 }
-void type():{ }
+int type():{}
 {
-    <INT>|<REAL>|<VOID>
+    <INT>{return 0;}|<REAL>{return 1;}|<VOID>{return 3;}|<STRING>{return 2;}
 }
 //顺序
 void SequenceStatement(): { }
 {
 	(Declare()|AssignStatement()) ";"			//声明和赋值
 }
-void Declare() : { Token tk; String name;Symbol tmp;}
+void Declare() : { Token tk; String name;Symbol tmp;int type;String value;}
 {
- (type()tk=< IDENTIFIERS>
+ (type=type()tk=< IDENTIFIERS>
  {
     name = tk.image;
     tmp = new Symbol(level,name);
-    try{
+    tmp.setType(type);
     table.registerSymbol(tmp);
-    }catch(Exception e){
-        e.printStackTrace();
-    }
- }(<ASSIGN>( expression()))? (","
+ }(<ASSIGN>( value=expression(){table.symbolList.get(table.symbolList.size()-1).setValue(value);}))? (","
  tk=< IDENTIFIERS >
  {
          name = tk.image;
          tmp = new Symbol(level,name);
-        try{
-            table.registerSymbol(tmp);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-  }(< ASSIGN> ( expression()))?)* )
+         tmp.setType(type);
+         table.registerSymbol(tmp);
+  }(< ASSIGN> ( value=expression(){table.symbolList.get(table.symbolList.size()-1).setValue(value);}))?)* )
 }
-void AssignStatement(): { Token tk;}
+void AssignStatement(): { Token tk; Symbol tmp; String value;}
 {
 	tk=< IDENTIFIERS>
 	{
-	    try{
-             table.getSymbol(tk.image);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-	}< ASSIGN> expression()
+             tmp=table.getSymbol(tk.image);
+	}< ASSIGN> value=expression(){tmp.setValue(value);}
 }
 
 //条件
@@ -203,11 +193,7 @@ Token tk;
 }
 {
     <READ><LPS>tk=<IDENTIFIERS>{
-                try{
-                     table.getSymbol(tk.image);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
+         table.getSymbol(tk.image);
     }<RPS>";"
 }
 
@@ -218,36 +204,27 @@ void Write():{}
 
 void DeclareFunction():{
     Token tk;FunSymbol tmp;String name;level++;
-    Symbol tmp1;
+    Symbol tmp1;int type;
 }
 {
-   type()tk=<IDENTIFIERS>
+   type=type()tk=<IDENTIFIERS>
    {
         name = tk.image;
         tmp = new FunSymbol(name);
-        try{
-             table.registerFunSymbol(tmp);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-   }<LPS>(type()tk=<IDENTIFIERS>
+        tmp.setType(type);
+        table.registerFunSymbol(tmp);
+   }<LPS>(type=type()tk=<IDENTIFIERS>
    {
        name = tk.image;
        tmp1 = new Symbol(level,name);
-       try{
+       tmp1.setType(type);
        table.registerSymbol(tmp1);
-       }catch(Exception e){
-           e.printStackTrace();
-       }
-   }(","type()tk=<IDENTIFIERS>
+   }(","type=type()tk=<IDENTIFIERS>
    {
        name = tk.image;
        tmp1 = new Symbol(level,name);
-       try{
+       tmp1.setType(type);
        table.registerSymbol(tmp1);
-       }catch(Exception e){
-           e.printStackTrace();
-       }
    })*)?<RPS>StatementBlock()
 }
 
@@ -261,44 +238,77 @@ void StatementBlock():{
     }
 }
 
-void expression() :{ }
+String expression() :{ String str1;String str2=null;int type=0;}
 {
-	polynomial()(
-	 <EQ>polynomial()
-	 |<NEQ>polynomial()
-	 |<GT>polynomial()
-	 |<GET>polynomial()
-	 |<LT>polynomial()
-	 |<LET>polynomial()
+	str1=polynomial()(
+	 <EQ>str2=polynomial(){type=1;}
+	 |<NEQ>str2=polynomial(){type=2;}
+	 |<GT>str2=polynomial(){type=3;}
+	 |<GET>str2=polynomial(){type=4;}
+	 |<LT>str2=polynomial(){type=5;}
+	 |<LET>str2=polynomial(){type=6;}
 	)?
+	{
+	    if(str2==null) return str1;
+	    float f1 = Float.valueOf(str1);
+	    float f2 = Float.valueOf(str2);
+	    switch(type){
+	        case 0:  return str1;
+	        case 1: if(str1.equals(str2)) return "1";  else return "0";
+	        case 2:if(str1.equals(str2)) return"0"; else return"1";
+	        case 3:if(f1>f2) return"1"; else return"0";
+	        case 4:if(f1>=f2) return"1";else return"0";
+	        case 5:if(f1<f2) return "1";else return"0";
+	        case 6:if(f1<=f2) return"1";else return"0";
+	        default:return str1;
+	    }
+	}
 }
-void polynomial(): { }
+String polynomial(): { String str1;String str2=null;int type=0;}
 {
-	term()((<PLUS>|<MINUS>)polynomial())?
+	str1=term()((<PLUS>{type=1;}|<MINUS>{type=2;})str2=polynomial())?
+	{
+	    if(str2==null) return str1;
+	    float f1 = Float.valueOf(str1);
+        float f2 = Float.valueOf(str2);
+        switch(type){
+            case 1:float f = f1+f2;return String.valueOf(f);
+            case 2:float f0 = f1-f2;return String.valueOf(f0);
+            default:return str1;
+        }
+	}
 }
-void term(): { }
+String term(): {String str1;String str2=null; int type=0;}
 {
-	factor()((<DIV>|<MUL>)term())?
+	str1=factor()((<DIV>{type=1;}|<MUL>{type=2;})str2=term())?
+	{
+	    if(str2==null) return str1;
+	    float f1=Float.valueOf(str1);
+	    float f2=Float.valueOf(str2);
+	    switch(type){
+	        case 1:if(f2==0)throw new ParseException("The divisor can not be 0.");else {float f=f1/f2;return String.valueOf(f);}
+	        case 2:float f0=f1*f2;return String.valueOf(f0);
+	        default:return str1;
+	    }
+	}
 }
-void factor() :{Token tk;String name;boolean isFun=false; }
+String factor() :{Token tk;String name;boolean isFun=false; }
 {
 
-	 <CONSTANT>
-	| <LPS>expression()<RPS>
-	| <PLUS>term()
-	| <MINUS>term()
+	tk= <CONSTANT> {return tk.image;}
+	| <LPS>name=expression(){return name;}<RPS>
+	| <PLUS>name=term(){return name;}
+	| <MINUS>name=term(){return "-"+name;}
 	| tk=<IDENTIFIERS>(<LPS>(expression()(","expression())*)?<RPS>{isFun=true;})?
 	{
 	    name = tk.image;
-	    try{
             if(isFun){
-                table.getFunSymbol(name);
+                FunSymbol tmp = table.getFunSymbol(name);
+                return tmp.getValue();
             }else{
-                table.getSymbol(name);
+                Symbol tmp = table.getSymbol(name);
+                return tmp.getValue();
             }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 	}
 }
 
@@ -308,11 +318,7 @@ void FunctionCall():{Token tk;FunSymbol tmp;String name;}
     {
         name=tk.image;
         tmp=new FunSymbol(name);
-        try{
-            table.getFunSymbol(name);
-         }catch(Exception e){
-            e.printStackTrace();
-        }
+        table.getFunSymbol(name);
     }<LPS>(expression()(","expression())*)?<RPS>
 }
 

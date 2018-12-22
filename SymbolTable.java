@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.runtime.ParserException;
+
 import java.util.ArrayList;
 
 public class SymbolTable {
@@ -10,20 +12,20 @@ public class SymbolTable {
         funSymbolList.clear();
     }
 
-    public void registerSymbol(Symbol symbol) throws Exception {
+    public void registerSymbol(Symbol symbol){
         for(int i=0;i<symbolList.size();i++){
             if(symbolList.get(i).GetName()==symbol.GetName()
             && symbolList.get(i).GetLevel()==symbol.GetLevel()){
-                throw new Exception(symbol.GetName()+" has been declared");
+                throw new ParserException(symbol.GetName()+" has been declared");
             }
         }
         symbolList.add(symbol);
     }
 
-    public void registerFunSymbol(FunSymbol funSymbol) throws Exception{
+    public void registerFunSymbol(FunSymbol funSymbol){
         for(int i=0;i<funSymbolList.size();i++){
             if(funSymbolList.get(i).GetName()==funSymbol.GetName()){
-                throw new Exception(funSymbol.GetName()+" function has been declared");
+                throw new ParserException(funSymbol.GetName()+" function has been declared");
             }
         }
         funSymbolList.add(funSymbol);
@@ -34,21 +36,21 @@ public class SymbolTable {
             symbolList.remove(symbolList.size()-1);
     }
 
-    public Symbol getSymbol(String name) throws Exception {
+    public Symbol getSymbol(String name){
         for(int i=symbolList.size()-1;i>=0;i--){
             Symbol tmp = symbolList.get(i);
-            if(tmp.GetName()==name)
+            if(tmp.GetName().equals(name))
                 return tmp;
         }
-        throw new Exception(name+" has not been declared");
+        throw new ParserException(name+" has not been declared");
     }
 
-    public FunSymbol getFunSymbol(String name) throws Exception{
+    public FunSymbol getFunSymbol(String name){
         for(int i=0;i<funSymbolList.size();i++){
             FunSymbol tmp = funSymbolList.get(i);
-            if(tmp.GetName()==name)
+            if(tmp.GetName().equals(name))
                 return tmp;
         }
-        throw new Exception(name+" function has not been declared");
+        throw new ParserException(name+" function has not been declared");
     }
 }

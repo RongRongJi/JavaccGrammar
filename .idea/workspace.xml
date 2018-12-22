@@ -5,11 +5,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMMParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/CMMParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMMParser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/CMMParser.jj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMMParserTokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/CMMParserTokenManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunSymbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/FunSymbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Symbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Symbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/SymbolTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMMParser/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMMParser/CMMParser$JJCalls.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/CMMParser$JJCalls.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMMParser/CMMParser$LookaheadSuccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/CMMParser$LookaheadSuccess.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMMParser/CMMParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/CMMParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CMMParser/CMMParser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/CMMParser.jj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMMParser/CMMParserTokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/CMMParserTokenManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMMParser/FunSymbol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/FunSymbol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMMParser/Symbol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/Symbol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMMParser/SymbolTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/SymbolTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CMMParser/test.c" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CMMParser/test.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.c" beforeDir="false" afterPath="$PROJECT_DIR$/test.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMMParser.jj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="304" column="45" selection-start-line="304" selection-start-column="45" selection-end-line="304" selection-end-column="45" />
+            <state relative-caret-position="190">
+              <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -32,15 +42,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Symbol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+            <state relative-caret-position="114">
+              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
               <folding>
-                <element signature="e#199#200#0" expanded="true" />
-                <element signature="e#228#229#0" expanded="true" />
-                <element signature="e#262#263#0" expanded="true" />
-                <element signature="e#291#292#0" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#362#363#0" expanded="true" />
+                <element signature="e#409#410#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#484#485#0" expanded="true" />
+                <element signature="e#515#516#0" expanded="true" />
+                <element signature="e#566#567#0" expanded="true" />
+                <element signature="e#595#596#0" expanded="true" />
+                <element signature="e#635#636#0" expanded="true" />
+                <element signature="e#657#658#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,15 +61,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FunSymbol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="181">
+              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               <folding>
-                <element signature="e#92#93#0" expanded="true" />
-                <element signature="e#119#120#0" expanded="true" />
-                <element signature="e#201#202#0" expanded="true" />
-                <element signature="e#230#231#0" expanded="true" />
-                <element signature="e#220#221#0" expanded="true" />
-                <element signature="e#248#249#0" expanded="true" />
+                <element signature="e#326#327#0" expanded="true" />
+                <element signature="e#356#357#0" expanded="true" />
+                <element signature="e#397#398#0" expanded="true" />
+                <element signature="e#428#429#0" expanded="true" />
+                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#488#489#0" expanded="true" />
+                <element signature="e#528#529#0" expanded="true" />
+                <element signature="e#555#556#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,17 +80,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="32" />
+            <state relative-caret-position="38">
+              <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMMParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7125">
-              <caret line="381" column="39" lean-forward="true" selection-start-line="381" selection-start-column="39" selection-end-line="381" selection-end-column="39" />
+            <state relative-caret-position="224">
+              <caret line="288" column="45" selection-start-line="288" selection-start-column="45" selection-end-line="288" selection-end-column="45" />
+              <folding>
+                <element signature="e#34245#34246#0" expanded="true" />
+                <element signature="e#34281#34282#0" expanded="true" />
+                <element signature="e#34322#34323#0" expanded="true" />
+                <element signature="e#34358#34359#0" expanded="true" />
+                <element signature="e#34585#34586#0" expanded="true" />
+                <element signature="e#34614#34615#0" expanded="true" />
+                <element signature="e#35574#35575#0" expanded="true" />
+                <element signature="e#35605#35606#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,8 +111,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-190">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="361">
+              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ParseException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-133">
+              <caret line="27" column="58" lean-forward="true" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -105,16 +141,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Symbol.java" />
         <option value="$PROJECT_DIR$/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/CMMParser.jj" />
         <option value="$PROJECT_DIR$/FunSymbol.java" />
+        <option value="$PROJECT_DIR$/Symbol.java" />
+        <option value="$PROJECT_DIR$/CMMParser.java" />
+        <option value="$PROJECT_DIR$/CMMParser.jj" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="420" />
-    <option name="y" value="47" />
+    <option name="x" value="283" />
+    <option name="y" value="32" />
     <option name="width" value="1465" />
     <option name="height" value="985" />
   </component>
@@ -126,8 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,6 +174,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,16 +223,18 @@
       <updated>1545228982235</updated>
       <workItem from="1545228983575" duration="8987000" />
       <workItem from="1545406985395" duration="9112000" />
+      <workItem from="1545473130548" duration="607000" />
+      <workItem from="1545493653188" duration="5174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18099000" />
+    <option name="totallyTimeSpent" value="23880000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="336" y="38" width="1172" height="788" extended-state="0" />
+    <frame x="227" y="26" width="1172" height="788" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2540395" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26301616" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -204,8 +243,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3277439" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39878234" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3246951" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39786586" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -214,7 +253,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32876712" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3277439" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -229,69 +268,116 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/CMMParser.java</url>
+          <line>103</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/CMMParser.java</url>
+          <line>250</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/CMMParser.java</url>
+          <line>301</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/CMMParser.java</url>
+          <line>330</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ParseException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1145">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="-133">
+          <caret line="27" column="58" lean-forward="true" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Symbol.java">
+    <entry file="file://$PROJECT_DIR$/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#228#229#0" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#362#363#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMMParser.jj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="304" column="45" selection-start-line="304" selection-start-column="45" selection-end-line="304" selection-end-column="45" />
+        <state relative-caret-position="361">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FunSymbol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        <state relative-caret-position="181">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding>
-            <element signature="e#92#93#0" expanded="true" />
-            <element signature="e#119#120#0" expanded="true" />
-            <element signature="e#201#202#0" expanded="true" />
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#248#249#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#397#398#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Symbol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+          <folding>
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="32" />
+        <state relative-caret-position="38">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMMParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7125">
-          <caret line="381" column="39" lean-forward="true" selection-start-line="381" selection-start-column="39" selection-end-line="381" selection-end-column="39" />
+        <state relative-caret-position="224">
+          <caret line="288" column="45" selection-start-line="288" selection-start-column="45" selection-end-line="288" selection-end-column="45" />
+          <folding>
+            <element signature="e#34245#34246#0" expanded="true" />
+            <element signature="e#34281#34282#0" expanded="true" />
+            <element signature="e#34322#34323#0" expanded="true" />
+            <element signature="e#34358#34359#0" expanded="true" />
+            <element signature="e#34585#34586#0" expanded="true" />
+            <element signature="e#34614#34615#0" expanded="true" />
+            <element signature="e#35574#35575#0" expanded="true" />
+            <element signature="e#35605#35606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMMParser.jj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
         </state>
       </provider>
     </entry>
