@@ -1,12 +1,14 @@
 void main(){
-	int i=3;
-	real j=0;
-	while(i>0){
-		write(i);
-		for(j=0;j<3;j=j+1){
-		write(j);
-		}
-		i=i-1;
+	int a;
+	int b;
+	read(a);
+	read(b);
+	int result = 3;
+	for(result=3;result>0;result=result-1){
+		write("forstate ");
 	}
-    return 0;
+	while(result<=3){
+		write("while ");
+		result=result+1;
+	}
 }

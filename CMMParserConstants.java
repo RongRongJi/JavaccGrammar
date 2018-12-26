@@ -9,33 +9,33 @@ public interface CMMParserConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int CONSTANT = 7;
+  int DIGIT = 7;
   /** RegularExpression Id. */
-  int DIGIT = 8;
+  int INTEGER_LITERAL = 8;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 9;
+  int REAL_LITERAL = 9;
   /** RegularExpression Id. */
-  int REAL_LITERAL = 10;
+  int STRING = 10;
   /** RegularExpression Id. */
-  int STRING = 11;
+  int IF = 11;
   /** RegularExpression Id. */
-  int IF = 12;
+  int ELSE = 12;
   /** RegularExpression Id. */
-  int ELSE = 13;
+  int WHILE = 13;
   /** RegularExpression Id. */
-  int WHILE = 14;
+  int FOR = 14;
   /** RegularExpression Id. */
-  int FOR = 15;
+  int READ = 15;
   /** RegularExpression Id. */
-  int READ = 16;
+  int WRITE = 16;
   /** RegularExpression Id. */
-  int WRITE = 17;
+  int INT = 17;
   /** RegularExpression Id. */
-  int INT = 18;
+  int REAL = 18;
   /** RegularExpression Id. */
-  int REAL = 19;
+  int VOID = 19;
   /** RegularExpression Id. */
-  int VOID = 20;
+  int CHAR = 20;
   /** RegularExpression Id. */
   int RETURN = 21;
   /** RegularExpression Id. */
@@ -97,7 +97,6 @@ public interface CMMParserConstants {
     "\"\\r\"",
     "<token of kind 5>",
     "<token of kind 6>",
-    "<CONSTANT>",
     "<DIGIT>",
     "<INTEGER_LITERAL>",
     "<REAL_LITERAL>",
@@ -111,6 +110,7 @@ public interface CMMParserConstants {
     "\"int\"",
     "\"real\"",
     "\"void\"",
+    "\"char\"",
     "\"return\"",
     "\"+\"",
     "\"-\"",
